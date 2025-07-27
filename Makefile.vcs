@@ -7,7 +7,7 @@ verbosity = UVM_LOW
 
 VCS = vcs -full64 -sverilog -ntb_opts uvm-1.2 -debug_access+all tb_top.sv
 
-SIMV = ./simv +UVM_TESTNAME=$(test_name) +UVM_VERBOSITY=$(verbosity)
+SIMV = ./simv +UVM_TESTNAME=$(test_name) +UVM_VERBOSITY=$(verbosity) +UVM_NO_RELNOTES
 
 VERDI = verdi -sv -ssf *.fsdb
 
@@ -17,8 +17,7 @@ comp:
 run:
 	$(SIMV)
 
-comprun:
-	comp run
+comprun:	comp run
 
 clean:
 	rm -rf csrc simv* ucli.key vc_hdrs.h DVEfiles *.log *.vpd *.vcd verdiLog novas* *.vdb *.fsdb vfastLog verdi_config_file *Log*

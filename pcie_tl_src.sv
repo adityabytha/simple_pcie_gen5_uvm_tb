@@ -1,6 +1,9 @@
 // File: pcie_gen5_transaction_layer.sv
 // taken from chatgpt only for using to build a uvm-tb based on this design as
 // a practice for interview and since added in resume.
+//
+
+
 module pcie_gen5_transaction_layer #(
     parameter ADDR_WIDTH = 64,
     parameter DATA_WIDTH = 256,    // Gen5 can use 256-bit payloads
@@ -8,7 +11,6 @@ module pcie_gen5_transaction_layer #(
 )(
     input logic clk,
     input logic rst_n,
-
     // TLP Input (from Data Link Layer)
     input logic                 rx_valid,
     input logic [TLP_HEADER_WIDTH-1:0] rx_header,
@@ -41,7 +43,7 @@ module pcie_gen5_transaction_layer #(
     // Internal TLP fields
     typedef struct packed {
         logic [2:0]   fmt;
-        logic [4:0]   type;
+        logic [4:0]   type1;
         logic         th;
         logic         td;
         logic         ep;
@@ -59,7 +61,7 @@ module pcie_gen5_transaction_layer #(
     // Header unpacking (rx_header[127:0])
     always_comb begin
         parsed_rx_header.fmt           = rx_header[127:125];
-        parsed_rx_header.type          = rx_header[124:120];
+        parsed_rx_header.type1         = rx_header[124:120];
         parsed_rx_header.th            = rx_header[119];
         parsed_rx_header.td            = rx_header[118];
         parsed_rx_header.ep            = rx_header[117];
@@ -78,7 +80,7 @@ module pcie_gen5_transaction_layer #(
             app_req_valid <= 0;
         end else if (rx_valid && rx_sop) begin
             app_req_valid <= 1;
-            app_req_type  <= {parsed_rx_header.fmt, parsed_rx_header.type};
+            app_req_type  <= {parsed_rx_header.fmt, parsed_rx_header.type1};
             app_req_addr  <= parsed_rx_header.address;
             app_req_data  <= rx_data;
         end else if (app_req_ready) begin
