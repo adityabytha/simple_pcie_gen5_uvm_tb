@@ -1,0 +1,15 @@
+#files to be ignored by git
+
+simv
+ucli.key
+vc_hdrs.h
+
+
+
+
+
+
+
+#folders
+csrc/
+simv.daidir/
