@@ -16,7 +16,7 @@ interface pcie_intf#(
 	logic [DATA_WIDTH-1:0] rx_data;
     	logic                 rx_sop; // Start of packet
     	logic                 rx_eop; // End of packet
-    	logic [1:0]           rx_bar_hit;
+    //	logic [1:0]           rx_bar_hit;
 
 	//output to DLL but is input to dut
     	logic                tx_ready;
@@ -29,19 +29,29 @@ interface pcie_intf#(
     	logic                tx_sop;
     	logic                tx_eop;
 
-	    // Application Layer interface
-    	logic                app_req_valid;
-    	logic [7:0]          app_req_type;
-    	logic [ADDR_WIDTH-1:0] app_req_addr;
-    	logic [DATA_WIDTH-1:0] app_req_data;
-    	//inputs
-	logic                app_req_ready;
-	logic                app_cpl_valid;
-    	logic [DATA_WIDTH-1:0] app_cpl_data;
-    	logic [15:0]         app_requester_id;
-    	logic [7:0]          app_tag;
+    // Interface to Application Layer
+    logic app_req_valid;
+    logic [7:0] app_tlp_type; // Combined fmt + type
+    logic [ADDR_WIDTH-1:0] app_address;
+    logic [DATA_WIDTH-1:0] app_data;
+    logic [9:0] app_tag;
+    logic [15:0] app_requester_id;
+    logic [3:0] app_first_be;
+    logic [3:0] app_last_be;
+    logic [2:0] app_tc;
+    logic [2:0] app_attr;
+    logic app_th;
+    logic app_td;
+    logic app_ep;
+    logic [1:0] app_at;
+    logic [9:0] app_length_dw;
+    logic app_req_ready;
 
-	
+    // Completion Input
+    logic cpl_valid;
+    logic [DATA_WIDTH-1:0] cpl_data;
+    logic [15:0] cpl_requester_id;
+    logic [9:0] cpl_tag;
 endinterface	
 	
 
