@@ -3,16 +3,17 @@
 //
 
 
+`include "uvm_pkg.sv"
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
 
 // Define the same parameters here
 localparam int ADDR_WIDTH = 64;
 localparam int DATA_WIDTH = 256;
 localparam int TLP_HEADER_WIDTH = 128;
 
-
-`include "uvm_pkg.sv"
-import uvm_pkg::*;
-`include "uvm_macros.svh"
+`include "pcie_intf.sv"
 
 //`include "pcie_pkg.sv"
 //import pcie_pkg::*;
@@ -20,10 +21,13 @@ import uvm_pkg::*;
 `include "pcie_tl_src.sv"
 
 `include "uvm_commons.sv"
-
-`include "pcie_intf.sv"
 `include "pcie_tx.sv"
 
+`include "pcie_seq_lib.sv"
+
+`include "pcie_seqr.sv"
+`include "pcie_driver.sv"
+`include "pcie_agent.sv"
 `include "pcie_env.sv"
 `include "pcie_test_lib.sv"
 
@@ -80,7 +84,7 @@ module tb_top;
 
 	initial begin
 
-		`uvm_info("TB_TOP","THIS IS IN TOP OF TB",UVM_INFO)
+		//`uvm_info("TB_TOP","THIS IS IN TOP OF TB",UVM_NONE)
 		//$display("THSI\n");
 		run_test();
 	end
