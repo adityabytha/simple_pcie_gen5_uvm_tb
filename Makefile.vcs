@@ -1,7 +1,7 @@
 #MAKEFILE
 #has definitions to compile and run using single commands
 
-test_name = pcie_base_test
+test_name = pcie_main_test
 #verbosity = UVM_NONE
 verbosity = UVM_LOW
 

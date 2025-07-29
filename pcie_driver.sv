@@ -12,5 +12,12 @@ class pcie_driver extends uvm_driver#(pcie_tx);
 		super.build_phase(phase);
 		`uvm_info("DRV","Build Phase",UVM_LOW)
 	endfunction
-
+	
+	task run_phase(uvm_phase phase);
+		forever begin 
+			seq_item_port.get_next_item(req);
+			req.print();
+			seq_item_port.item_done();
+		end
+	endtask
 endclass

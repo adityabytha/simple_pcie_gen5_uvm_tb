@@ -6,9 +6,9 @@
 class base_seq extends uvm_sequence#(pcie_tx);
 	`uvm_object_utils(pcie_tx)
 	`NEW_OBJ
-	uvm_phase phase;
+	//uvm_phase phase;
 
-	task pre_body();
+	/*task pre_body();
 		phase=get_starting_phase();
 		if(phase != null) begin
 			phase.raise_objection(this);
@@ -20,7 +20,7 @@ class base_seq extends uvm_sequence#(pcie_tx);
 		if(phase != null) begin
 			phase.drop_objection(this);
 		end
-	endtask
+	endtask*/
 endclass
 
 class pcie_seq extends base_seq;
@@ -29,7 +29,7 @@ class pcie_seq extends base_seq;
 
 	task body();
 		`uvm_do(req)
-		`uvm_info("BASE_SEQ","Running",UVM_HIGH)
+		`uvm_info("PCIE_SEQ","SEQ BODY",UVM_LOW)
 	endtask	
 endclass
 

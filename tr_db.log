@@ -1,0 +1,6 @@
+  CREATE_STREAM @0 {NAME:pcie_seq T:Transactions SCOPE:uvm_test_top.env.agent.seqr STREAM:569}
+  CREATE_STREAM @0 {NAME:pcie_seq T:Transactions SCOPE:uvm_test_top.env.agent.seqr STREAM:569}
+  CREATE_STREAM @0 {NAME:pcie_seq T:Transactions SCOPE:uvm_test_top.env.agent.seqr STREAM:571}
+  CREATE_STREAM @0 {NAME:pcie_seq T:Transactions SCOPE:uvm_test_top.env.agent.seqr STREAM:569}
+  CREATE_STREAM @0 {NAME:seq T:Transactions SCOPE:uvm_test_top.env.agent.seqr STREAM:566}
+  CREATE_STREAM @0 {NAME:seq T:Transactions SCOPE:uvm_test_top.env.agent.seqr STREAM:566}
