@@ -1,11 +1,15 @@
 //TEST BENCH TOP FILE of PCIE
 //
 //
-
+`timescale 1ns / 1ps
 
 `include "uvm_pkg.sv"
 import uvm_pkg::*;
 `include "uvm_macros.svh"
+
+//define clock variables
+`define PCIE_CLK_GEN5_HALF 0.03125
+`define PCIE_CLK_GEN5 0.0625
 
 
 // Define the same parameters here
@@ -25,11 +29,16 @@ localparam int TLP_HEADER_WIDTH = 128;
 
 `include "pcie_seq_lib.sv"
 
+`include "pcie_scoreboard.sv"
+`include "pcie_monitor.sv"
 `include "pcie_seqr.sv"
 `include "pcie_driver.sv"
 `include "pcie_agent.sv"
 `include "pcie_env.sv"
 `include "pcie_test_lib.sv"
+
+
+
 
 module tb_top;
 	
@@ -41,6 +50,8 @@ module tb_top;
     		.TLP_HEADER_WIDTH(TLP_HEADER_WIDTH)
 		) intf(clk,rst_n);
 
+	initial uvm_config_db#(virtual pcie_intf)::set(uvm_root::get(),"*","pcie_tx",intf);
+	
 	pcie_gen5_transaction_layer#(
     		.ADDR_WIDTH(ADDR_WIDTH),
     		.DATA_WIDTH(DATA_WIDTH),
@@ -81,6 +92,16 @@ module tb_top;
 			// Add all the values but put (intf.ADDR) like that
 );
 
+	initial begin
+		clk = 0;
+		forever #`PCIE_CLK_GEN5_HALF clk=~clk;
+	end
+
+	initial begin
+		rst_n = 0;
+		repeat(2) #`PCIE_CLK_GEN5;
+		rst_n = 1;
+	end
 
 	initial begin
 
@@ -89,4 +110,10 @@ module tb_top;
 		run_test();
 	end
 
+
+
+	initial begin
+		$fsdbDumpfile();
+		$fsdbDumpvars(5,tb_top);
+	end
 endmodule

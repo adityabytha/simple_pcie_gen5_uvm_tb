@@ -5,7 +5,7 @@ test_name = pcie_main_test
 #verbosity = UVM_NONE
 verbosity = UVM_LOW
 
-VCS = vcs -full64 -sverilog -ntb_opts uvm-1.2 -debug_access+all tb_top.sv
+VCS = vcs -full64 -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2 -debug_access+all tb_top.sv
 
 SIMV = ./simv +UVM_TESTNAME=$(test_name) +UVM_VERBOSITY=$(verbosity) +UVM_NO_RELNOTES
 
