@@ -11,7 +11,7 @@ class pcie_driver extends uvm_driver#(pcie_tx);
 
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
-		uvm_config_db#(virtual pcie_intf)::get(this,"","pcie_tx",vif);
+		uvm_config_db#(virtual pcie_intf)::get(this,"","pcie_intf",vif);
 		`uvm_info("DRV","Build Phase",UVM_LOW)
 	endfunction
 	
@@ -22,7 +22,7 @@ class pcie_driver extends uvm_driver#(pcie_tx);
 	task run_phase(uvm_phase phase);
 		forever begin 
 			seq_item_port.get_next_item(req);
-			drive_tx(req);
+			//drive_tx(req);
 			req.print();
 			seq_item_port.item_done();
 		end

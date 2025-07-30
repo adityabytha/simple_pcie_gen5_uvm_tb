@@ -29,7 +29,7 @@ localparam int TLP_HEADER_WIDTH = 128;
 
 `include "pcie_seq_lib.sv"
 
-`include "pcie_scoreboard.sv"
+//`include "pcie_scoreboard.sv"
 `include "pcie_monitor.sv"
 `include "pcie_seqr.sv"
 `include "pcie_driver.sv"
@@ -43,6 +43,14 @@ localparam int TLP_HEADER_WIDTH = 128;
 module tb_top;
 	
 	logic clk, rst_n;
+	int runs;
+
+	initial begin 
+		if (!$value$plusargs("runs=%d", runs)) begin
+        		runs = 1; // default value
+		end
+		uvm_resource_db#(int)::set("*","runs",runs,null);
+	end
 
 	pcie_intf#(
     		.ADDR_WIDTH(ADDR_WIDTH),
@@ -50,7 +58,7 @@ module tb_top;
     		.TLP_HEADER_WIDTH(TLP_HEADER_WIDTH)
 		) intf(clk,rst_n);
 
-	initial uvm_config_db#(virtual pcie_intf)::set(uvm_root::get(),"*","pcie_tx",intf);
+	initial uvm_config_db#(virtual pcie_intf)::set(uvm_root::get(),"*","pcie_intf",intf);
 	
 	pcie_gen5_transaction_layer#(
     		.ADDR_WIDTH(ADDR_WIDTH),
@@ -61,9 +69,9 @@ module tb_top;
 			.rst_n(rst_n),
 			.rx_valid(intf.rx_valid),
 		       	.rx_header(intf.rx_header),
+			.rx_data(intf.rx_data),
 			.rx_sop(intf.rx_sop),
 			.rx_eop(intf.rx_eop),
-			//.rx_bar_hit(intf.rx_bar_hit),
 			.tx_valid(intf.tx_valid),
 			.tx_header(intf.tx_header),
 			.tx_data(intf.tx_data),
@@ -86,6 +94,7 @@ module tb_top;
 			.app_at(intf.app_at),
 			.app_length_dw(intf.app_length_dw),
 			.app_req_ready(intf.app_req_ready),
+			.cpl_valid(intf.cpl_valid),
 			.cpl_data(intf.cpl_data),
 			.cpl_requester_id(intf.cpl_requester_id),
 			.cpl_tag(intf.cpl_tag)

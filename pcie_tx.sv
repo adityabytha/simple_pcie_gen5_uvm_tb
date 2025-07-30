@@ -7,7 +7,7 @@
 
 class pcie_tx extends uvm_sequence_item;
 	`NEW_OBJ
-	rand bit [2:0] fmt;
+    rand bit [2:0] fmt;
     rand bit [4:0] type1;
     rand bit [2:0] tc;
     rand bit       ln;
