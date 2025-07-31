@@ -23,25 +23,26 @@ class pcie_driver extends uvm_driver#(pcie_tx);
 		forever begin 
 			seq_item_port.get_next_item(req);
 			drive_tx(req);
-		//	req.print();
+			req.print();
 			seq_item_port.item_done();
 		end
 	endtask
 
-	task drive_tx(pcie_tx tx);
+	task drive_tx(pcie_tx tx);//do reset handling tmrw
+		@(posedge vif.clk);
 		vif.rx_sop    <= 1;
 		vif.app_req_ready <= 0;
             	vif.rx_valid  <= 1;
             	vif.rx_header <= {req.fmt, req.type1, req.tc, req.ln, req.th, req.attr[2], req.at,
-                              req.attr[1:0], req.td, req.ep, req.length, req.requester_id,
-                              req.tag[9:8], req.tag[7:0], req.last_be, req.first_be, req.address};
+		       			req.attr[1:0], req.td, req.ep, req.length, req.requester_id,
+					req.tag[9:8], req.tag[7:0], req.last_be, req.first_be, req.address};
             	vif.rx_data   <= req.data;
 		vif.rx_eop    <= 0;
             	@(posedge vif.clk);
             	vif.rx_sop    <= 0;
             	vif.rx_valid  <= 0;
 		vif.rx_eop    <= 1;
-		@(posedge vif.clk);
-		@(posedge vif.clk);
+		//@(posedge vif.clk);
+		//@(posedge vif.clk);
 	endtask
 endclass

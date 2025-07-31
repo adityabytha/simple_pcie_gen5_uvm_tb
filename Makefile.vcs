@@ -7,7 +7,7 @@ verbosity = UVM_NONE
 #verbosity = UVM_LOW
 
 seed = 1
-runs = 1
+runs = 10
 
 VCS = vcs -full64 -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2 -debug_access+all +define+RUNS=$(runs) tb_top.sv
 
