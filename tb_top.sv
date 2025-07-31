@@ -8,8 +8,13 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 
 //define clock variables
-`define PCIE_CLK_GEN5_HALF 0.03125
-`define PCIE_CLK_GEN5 0.0625
+//`define PCIE_CLK_GEN5_HALF 0.03125
+//`define PCIE_CLK_GEN5 0.0625
+
+//define clock variables for debug
+`define PCIE_CLK_GEN5_HALF 5
+`define PCIE_CLK_GEN5 10
+
 
 
 // Define the same parameters here

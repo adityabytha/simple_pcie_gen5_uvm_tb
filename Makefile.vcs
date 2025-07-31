@@ -7,7 +7,7 @@ verbosity = UVM_NONE
 #verbosity = UVM_LOW
 
 seed = 1
-runs = 10
+runs = 1
 
 VCS = vcs -full64 -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2 -debug_access+all +define+RUNS=$(runs) tb_top.sv
 
@@ -21,7 +21,12 @@ comp:
 run:
 	$(SIMV)
 
+verdi:
+	$(VERDI)
+
 comprun:	comp run
+
+sim: comp run verdi
 
 clean:
 	rm -rf csrc simv* ucli.key vc_hdrs.h DVEfiles *.log *.vpd *.vcd verdiLog novas* *.vdb *.fsdb vfastLog verdi_config_file *Log*

@@ -4,7 +4,7 @@
 //
 class pcie_scoreboard extends uvm_scoreboard;
 	`uvm_component_utils(pcie_scoreboard)
-	uvm_analysis_port#(pcie_tx) sb_act; //actual
+	uvm_analysis_port#(pcie_app_tx) sb_act; //actual
 	//uvm_analysis_port#(pcie_tx) sb_exp; //expected
 
 	function new(string name="",uvm_component parent=null);

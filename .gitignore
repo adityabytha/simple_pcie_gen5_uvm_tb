@@ -3,7 +3,8 @@
 simv
 ucli.key
 vc_hdrs.h
-
+*.log
+*.fsdb
 
 
 
