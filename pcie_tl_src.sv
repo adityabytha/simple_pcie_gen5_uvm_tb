@@ -17,14 +17,14 @@ module pcie_gen5_transaction_layer #(
     input logic clk,
     input logic rst_n,
 
-    // RX from DL
+    // RX from DLL - decoded and sent to APP layer
     input logic rx_valid,
     input logic [TLP_HEADER_WIDTH-1:0] rx_header,
     input logic [DATA_WIDTH-1:0] rx_data,
     input logic rx_sop,
     input logic rx_eop,
 
-    // TX to DL
+    // TX to DLL
     output logic tx_valid,
     output logic [TLP_HEADER_WIDTH-1:0] tx_header,
     output logic [DATA_WIDTH-1:0] tx_data,
@@ -50,7 +50,7 @@ module pcie_gen5_transaction_layer #(
     output logic [9:0] app_length_dw,
     input  logic app_req_ready,
 
-    // Completion Input
+    // Completion Input from outside forwarded to DLL
     input logic cpl_valid,
     input logic [DATA_WIDTH-1:0] cpl_data,
     input logic [15:0] cpl_requester_id,

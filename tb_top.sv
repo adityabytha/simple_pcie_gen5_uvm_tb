@@ -8,12 +8,12 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 
 //define clock variables
-//`define PCIE_CLK_GEN5_HALF 0.03125
-//`define PCIE_CLK_GEN5 0.0625
+`define PCIE_CLK_GEN5_HALF 0.03125
+`define PCIE_CLK_GEN5 0.0625
 
 //define clock variables for debug
-`define PCIE_CLK_GEN5_HALF 5
-`define PCIE_CLK_GEN5 10
+//`define PCIE_CLK_GEN5_HALF 5
+//`define PCIE_CLK_GEN5 10
 
 
 
@@ -41,8 +41,6 @@ localparam int TLP_HEADER_WIDTH = 128;
 `include "pcie_agent.sv"
 `include "pcie_env.sv"
 `include "pcie_test_lib.sv"
-
-
 
 
 module tb_top;
@@ -107,7 +105,7 @@ module tb_top;
 );
 
 	initial begin
-		clk = 0;
+		clk = 1;
 		forever #`PCIE_CLK_GEN5_HALF clk=~clk;
 	end
 
@@ -123,6 +121,17 @@ module tb_top;
 		//$display("THSI\n");
 		run_test();
 	end
+	int unsigned seed;
+
+	initial begin
+	    if (!$value$plusargs("SEED=%0d", seed)) begin
+        	seed = 12345;  // fallback default seed
+	    end
+
+	    // Apply the seed to SystemVerilog RNG
+	    void'($urandom(seed));
+	end
+
 
 
 

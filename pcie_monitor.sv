@@ -24,6 +24,10 @@ class pcie_monitor extends uvm_monitor;
 
 	task run_phase(uvm_phase phase);
 		forever begin
+		/*	if (vif.rst_n == 1'b0) begin
+				tx = new("app_layer");
+				tx.app_req_valid = 0;
+			end else begin*/
 			@(posedge vif.rx_sop); //do reset handling here
 			tx = new("app_layer");
 			tx.app_req_valid = vif.app_req_valid;
@@ -42,10 +46,10 @@ class pcie_monitor extends uvm_monitor;
 			tx.app_at = vif.app_at;
 			tx.app_length_dw = vif.app_length_dw;
 			tx.app_req_ready = vif.app_req_ready;
-
 			tx.print();
 			ap_port.write(tx);
 			//collect values into physical interface
+		//	end
 		end
 	endtask
 

@@ -48,12 +48,12 @@ endclass
 class pcie_dl_tx extends uvm_sequence_item;
 	`NEW_OBJ
 	// TX to DL
-    logic tx_valid;
-    logic [TLP_HEADER_WIDTH-1:0] tx_header;
-    logic [DATA_WIDTH-1:0] tx_data;
-    logic tx_sop;
-    logic tx_eop;
-    logic tx_ready;
+    rand bit tx_valid;
+    rand bit [TLP_HEADER_WIDTH-1:0] tx_header;
+    rand bit  [DATA_WIDTH-1:0] tx_data;
+    rand bit tx_sop;
+    rand bit tx_eop;
+    rand bit tx_ready;
 /*	
     `uvm_object_utils_begin(pcie_dl_tx)
     	`uvm_field_init(tx_valid, UVM_ALL_ON)
@@ -105,9 +105,23 @@ class pcie_app_tx extends uvm_sequence_item;
 		`uvm_field_int(app_length_dw, UVM_ALL_ON)
 		`uvm_field_int(app_req_ready, UVM_ALL_ON)
 	`uvm_object_utils_end
-
-
 endclass
+
+class pcie_cpl_tx extends uvm_sequence_item;
+	`NEW_OBJ
+	rand bit [DATA_WIDTH-1:0] cpl_data;
+       	rand bit [15:0] cpl_requester_id;
+	rand bit [9:0] cpl_tag;
+
+	`uvm_object_utils_begin(pcie_cpl_tx)
+		`uvm_field_int(cpl_data, UVM_ALL_ON)
+		`uvm_field_int(cpl_requester_id, UVM_ALL_ON)
+		`uvm_field_int(cpl_tag, UVM_ALL_ON)
+	`uvm_object_utils_end
+endclass
+
+
+
 /* pcie_tlp_item.sv
 class pcie_tlp_item extends uvm_sequence_item;
 
