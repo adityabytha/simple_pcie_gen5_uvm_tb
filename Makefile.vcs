@@ -2,14 +2,14 @@
 #has definitions to compile and run using single commands
 
 test_name = pcie_both_test
-verbosity = UVM_NONE
+#verbosity = UVM_NONE
 #verbosity = UVM_DEBUG
-#verbosity = UVM_LOW
+verbosity = UVM_LOW
 
 seed = 1
 runs = 10
 
-VCS = vcs -full64 -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2 -debug_access+all +define+RUNS=$(runs) tb_top.sv
+VCS = vcs -full64 -sverilog -timescale=1ns/1ps -ntb_opts uvm-1.2 -debug_access+all +define+RUNS=$(runs) tb_top.sv +error+100
 
 SIMV = ./simv +UVM_TESTNAME=$(test_name) +UVM_VERBOSITY=$(verbosity) +UVM_NO_RELNOTES +SEED=$(seed) +runs=$(runs)
 

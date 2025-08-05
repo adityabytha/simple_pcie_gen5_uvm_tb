@@ -15,13 +15,6 @@ class pcie_base_test extends uvm_test;
 	function void end_of_elaboration_phase(uvm_phase phase);
 		uvm_top.print_topology();
 	endfunction
-/*	
-	task run_phase(uvm_phase phase);
-		base_seq seq;
-		seq = base_seq::type_id::create("seq");
-
-	endtask
-	*/
 endclass
 
 
@@ -45,7 +38,32 @@ class pcie_main_test extends pcie_base_test;
 	endtask
 	
 endclass
+/*
+class pcie_both_test_2 extends pcie_base_test;
+	`uvm_component_utils(pcie_both_test_2)
+	`NEW_COMP
 
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+
+	endfunction
+
+	task run_phase(uvm_phase phase);
+		phase.raise_objection(this);
+		pcie_seq seq1;
+		pcie_2_seq seq2;
+		seq1 = pcie_seq::type_id::create("seq1");
+		seq2 = pcie_2_seq::type_id::create("seq2");
+
+		seq1.start(env.agent.seqr);
+		seq2.start(env.agent.seqr);
+
+		phase.phase_done.set_drain_time(this,`PCIE_CLK_GEN5);
+		phase.drop_objection(this);	
+	endtask
+
+endclass
+*/
 class pcie_both_test extends pcie_base_test;
 	`uvm_component_utils(pcie_both_test)
 	`NEW_COMP

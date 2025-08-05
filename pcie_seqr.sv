@@ -1,6 +1,6 @@
 //SEQR file
 //
-class pcie_seqr extends uvm_sequencer#(uvm_sequence_item);
+class pcie_seqr extends uvm_sequencer#(base_tx);
 	`uvm_component_utils(pcie_seqr)
 	`NEW_COMP
 endclass

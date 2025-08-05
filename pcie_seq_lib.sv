@@ -39,7 +39,6 @@ class pcie_seq extends uvm_sequence#(pcie_tx);
 				    req.data == 256'b0;
 		    		    })
 			#`PCIE_CLK_GEN5;
-			`uvm_info("PCIE_SEQ","SEQ BODY",UVM_LOW)
 		end
 	endtask	
 endclass
@@ -58,27 +57,19 @@ class pcie_2_seq extends uvm_sequence#(pcie_cpl_tx);
 				    req.cpl_requester_id >= 16'hfff0;
 		    		    })
 			#`PCIE_CLK_GEN5;
-			`uvm_info("PCIE_SEQ","SEQ BODY",UVM_LOW)
 		end
 	endtask	
 endclass
 
-class pcie_both_seq extends uvm_sequence#(uvm_sequence_item);
+class pcie_both_seq extends uvm_sequence#(base_tx);
 	`uvm_object_utils(pcie_both_seq)
 	`NEW_OBJ
 	int runs;
+	pcie_seq seq1;
+	pcie_2_seq seq2;
 	task body();
-		pcie_seq seq1;
-		pcie_2_seq seq2;
-
-		seq1 = pcie_seq::type_id::create("seq1");
-		seq1.start(m_sequencer);  // This works if the sequencer accepts both item types
-
-		seq2 = pcie_2_seq::type_id::create("seq2");
-		seq2.start(m_sequencer);
-		if (!uvm_resource_db#(int)::read_by_name("*", "runs", runs, this)) begin
-            		runs = 1; // fallback if not set
-        	end
+			`uvm_do(seq1)
+			`uvm_do(seq2)
 		`uvm_info("PCIE_BOTH_SEQ","SEQ BODY",UVM_LOW)
 	endtask	
 endclass

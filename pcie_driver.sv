@@ -4,7 +4,7 @@
 //
 //
 
-class pcie_driver extends uvm_driver#(uvm_sequence_item);
+class pcie_driver extends uvm_driver#(base_tx);
 	`NEW_COMP
 	`uvm_component_utils(pcie_driver)
 	virtual pcie_intf vif;
@@ -15,27 +15,19 @@ class pcie_driver extends uvm_driver#(uvm_sequence_item);
 		`uvm_info("DRV","Build Phase",UVM_LOW)
 	endfunction
 	
-	//virtual intf
-	
-	//ERROR SOMEWHERE HERE RECTIFY TMRW
-
-	virtual task run_phase(uvm_phase phase);
+	task run_phase(uvm_phase phase);
 		forever begin 
-			//seq_item_port.get_next_item(req);
-			//drive_tx(req);
-			//req.print();
-			//seq_item_port.item_done();
-			//#`PCIE_CLK_GEN5;
-			uvm_sequence_item req;
-			pcie_cpl_tx req2;
-
+			base_tx req;
+			pcie_tx tx1;
+			pcie_cpl_tx tx2;
 			seq_item_port.get_next_item(req);
-			if(!$cast(req2,req)) begin
-				`uvm_fatal("DRV","FAILED TO CAST")
+			if ($cast(tx1, req)) begin
+			        // handle A item
+				drive_tx(tx1);
+			end else if ($cast(tx2,req)) begin
+				// handle B item
+				drive_cpl_tx(tx2);	
 			end
-
-			drive_cpl_tx(req2);
-			req.print();
 			seq_item_port.item_done();
 		end
 	endtask
@@ -48,12 +40,12 @@ class pcie_driver extends uvm_driver#(uvm_sequence_item);
 			@(posedge vif.clk);
 			vif.cpl_valid <= 1;
 			vif.tx_ready <= 1;
-			vif.cpl_data <= req2.cpl_data;
-			vif.cpl_requester_id <= req2.cpl_requester_id;
-			vif.cpl_tag <= req2.cpl_tag;
+			vif.cpl_data <= tx.cpl_data;
+			vif.cpl_requester_id <= tx.cpl_requester_id;
+			vif.cpl_tag <= tx.cpl_tag;
 		end	
 	endtask	
-/*
+
 	task drive_tx(pcie_tx tx);
 		if(vif.rst_n == 1'b0) begin
 			@(posedge vif.clk);
@@ -68,10 +60,10 @@ class pcie_driver extends uvm_driver#(uvm_sequence_item);
 		vif.rx_sop    <= 1;
 		vif.app_req_ready <= 0;
             	vif.rx_valid  <= 1;
-            	vif.rx_header <= {req.fmt, req.type1, req.tc, req.ln, req.th, req.attr[2], req.at,
-		       			req.attr[1:0], req.td, req.ep, req.length, req.requester_id,
-					req.tag[9:8], req.tag[7:0], req.last_be, req.first_be, req.address};
-            	vif.rx_data   <= req.data;
+            	vif.rx_header <= {tx.fmt, tx.type1, tx.tc, tx.ln, tx.th, tx.attr[2], tx.at,
+		       			tx.attr[1:0], tx.td, tx.ep, tx.length, tx.requester_id,
+					tx.tag[9:8], tx.tag[7:0], tx.last_be, tx.first_be, tx.address};
+            	vif.rx_data   <= tx.data;
 		vif.rx_eop    <= 0;
 
             	@(posedge vif.clk);
@@ -80,6 +72,6 @@ class pcie_driver extends uvm_driver#(uvm_sequence_item);
 		vif.rx_eop    <= 1;
 		end
 	endtask
-	*/
+
 endclass
 
