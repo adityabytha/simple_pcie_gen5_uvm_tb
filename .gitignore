@@ -7,7 +7,13 @@ vc_hdrs.h
 *.fsdb
 novas*
 
-
+DVEfiles/
+*.vpd 
+*.vcd 
+*.vdb 
+vfastLog 
+verdi_config_file 
+*Log*
 
 #folders
 csrc/
