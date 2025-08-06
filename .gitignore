@@ -5,12 +5,11 @@ ucli.key
 vc_hdrs.h
 *.log
 *.fsdb
-
-
-
+novas*
 
 
 
 #folders
 csrc/
 simv.daidir/
+verdiLog/
