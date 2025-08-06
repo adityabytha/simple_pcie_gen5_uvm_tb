@@ -1,0 +1,213 @@
+verdiSetActWin -win $_OneSearch
+debImport "-sv"
+wvCreateWindow
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvOpenFile -win $_nWave2 {/home/pcs/Documents/Aditya_data/pcie_uvm_tb/novas.fsdb}
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+nsMsgSwitchTab -tab general
+debImport "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_agent.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_driver.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_env.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_intf.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_monitor.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_pkg.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_scoreboard.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_seq_lib.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_seqr.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_test_lib.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_tl_src.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_tx.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/tb_top.sv" \
+          "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/uvm_commons.sv" "-2012" \
+          -path {/home/pcs/Documents/Aditya_data/pcie_uvm_tb}
+debLoadSimResult /home/pcs/Documents/Aditya_data/pcie_uvm_tb/novas.fsdb
+srcHBSelect "tb_top.intf" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "tb_top.intf" -win $_nTrace1
+wvCreateWindow
+srcHBAddObjectToWave -clipboard
+wvDrop -win $_nWave3
+verdiWindowBeWindow -win $_nWave3
+wvResizeWindow -win $_nWave3 0 0 1920 977
+wvResizeWindow -win $_nWave3 0 0 1920 977
+wvZoomAll -win $_nWave3
+wvSelectGroup -win $_nWave3 {G2}
+wvSetCursor -win $_nWave3 1974.857536 -snap {("intf(pcie_intf)" 31)}
+wvSetCursor -win $_nWave3 2157.225911 -snap {("intf(pcie_intf)" 31)}
+wvSetCursor -win $_nWave3 2078.039643 -snap {("intf(pcie_intf)" 31)}
+wvSetCursor -win $_nWave3 1984.455872 -snap {("intf(pcie_intf)" 1)}
+wvSetCursor -win $_nWave3 1799.687913 -snap {("intf(pcie_intf)" 1)}
+wvSetCursor -win $_nWave3 1862.077094 -snap {("intf(pcie_intf)" 1)}
+wvSelectSignal -win $_nWave3 {( "intf(pcie_intf)" 1 )} 
+wvSearchNext -win $_nWave3
+wvSetSearchMode -win $_nWave3 -posedge
+wvSearchNext -win $_nWave3
+wvSearchNext -win $_nWave3
+wvSearchPrev -win $_nWave3
+wvSetSearchMode -win $_nWave3 -posedge
+wvSearchNext -win $_nWave3
+wvSearchNext -win $_nWave3
+wvSearchNext -win $_nWave3
+wvSearchNext -win $_nWave3
+wvSetCursor -win $_nWave3 2051.644221 -snap {("intf(pcie_intf)" 9)}
+wvSelectSignal -win $_nWave3 {( "intf(pcie_intf)" 9 )} 
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+debReload
+srcHBSelect "tb_top.intf" -win $_nTrace1
+srcHBSelect "tb_top.intf" -win $_nTrace1
+wvCreateWindow
+wvSetPosition -win $_nWave4 {("G1" 0)}
+wvOpenFile -win $_nWave4 {/home/pcs/Documents/Aditya_data/pcie_uvm_tb/novas.fsdb}
+srcHBAddObjectToWave -clipboard
+wvDrop -win $_nWave4
+verdiSetActWin -win $_nWave3
+wvGetSignalClose -win $_nWave3
+wvCloseWindow -win $_nWave3
+verdiSetActWin -win $_nWave4
+wvZoomAll -win $_nWave4
+srcSignalView -off
+verdiDockWidgetMaximize -dock windowDock_nWave_4
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 1 )} 
+wvSetCursor -win $_nWave4 292.458744 -snap {("intf(pcie_intf)" 14)}
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 6 )} 
+wvSetCursor -win $_nWave4 333.909589 -snap {("intf(pcie_intf)" 7)}
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 7 )} 
+debReload
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+verdiSetActWin -win $_nWave4
+wvDisplayGridCount -win $_nWave4 -off
+wvGetSignalClose -win $_nWave4
+wvReloadFile -win $_nWave4
+wvSetCursor -win $_nWave4 495.107322 -snap {("intf(pcie_intf)" 7)}
+wvSetCursor -win $_nWave4 313.184167 -snap {("intf(pcie_intf)" 7)}
+wvSetCursor -win $_nWave4 495.107322 -snap {("intf(pcie_intf)" 7)}
+wvSetCursor -win $_nWave4 683.938952 -snap {("intf(pcie_intf)" 7)}
+wvSetCursor -win $_nWave4 1982.732114 -snap {("intf(pcie_intf)" 11)}
+wvSetCursor -win $_nWave4 253.310723 -snap {("intf(pcie_intf)" 3)}
+wvSetCursor -win $_nWave4 306.275692 -snap {("intf(pcie_intf)" 3)}
+wvSetCursor -win $_nWave4 488.198848 -snap {("intf(pcie_intf)" 3)}
+wvSetCursor -win $_nWave4 667.819179 -snap {("intf(pcie_intf)" 3)}
+wvSetCursor -win $_nWave4 842.833860 -snap {("intf(pcie_intf)" 3)}
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 30 )} 
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 3 )} 
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 3 4 5 6 7 )} 
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 8 9 10 11 12 13 )} 
+wvCollapseBus -win $_nWave4
+wvSetPosition -win $_nWave4 {("G2" 0)}
+wvSetPosition -win $_nWave4 {("G2" 0)}
+wvSetPosition -win $_nWave4 {("G3" 0)}
+wvAddGroup -win $_nWave4 {G3}
+wvSelectGroup -win $_nWave4 {G2}
+wvSelectGroup -win $_nWave4 {G3}
+wvSelectGroup -win $_nWave4 {G3}
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 30 31 32 33 )} 
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 30)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 31)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 33)}
+wvSetPosition -win $_nWave4 {("G2" 0)}
+wvSetPosition -win $_nWave4 {("G3" 0)}
+wvSetPosition -win $_nWave4 {("G2" 0)}
+wvMoveSelected -win $_nWave4
+wvSetPosition -win $_nWave4 {("G2" 4)}
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 14 15 16 17 18 19 20 21 22 23 \
+           24 25 26 27 28 29 )} 
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 14)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 16)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 28)}
+wvSetPosition -win $_nWave4 {("G2" 0)}
+wvSetPosition -win $_nWave4 {("G2" 1)}
+wvSetPosition -win $_nWave4 {("G2" 3)}
+wvSetPosition -win $_nWave4 {("G3" 0)}
+verdiDockWidgetSetCurTab -dock widgetDock_<Message>
+nsMsgSearchString "app_req_ready" -next -case -tab cmpl
+wvSetPosition -win $_nWave4 {("G2" 4)}
+verdiSetActWin -dock widgetDock_<Message>
+verdiDockWidgetSetCurTab -dock widgetDock_MTB_SOURCE_TAB_1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+verdiDockWidgetSetCurTab -dock windowDock_nWave_4
+verdiSetActWin -win $_nWave4
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 21)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 25)}
+wvSetPosition -win $_nWave4 {("G2" 2)}
+wvSetPosition -win $_nWave4 {("G2" 3)}
+wvSetPosition -win $_nWave4 {("G2" 4)}
+wvSetPosition -win $_nWave4 {("G3" 0)}
+wvMoveSelected -win $_nWave4
+wvSetPosition -win $_nWave4 {("G3" 16)}
+wvSetPosition -win $_nWave4 {("G3" 16)}
+wvSelectSignal -win $_nWave4 {( "G3" 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 )} \
+           
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 8 9 10 11 12 13 )} 
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 8)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 10)}
+wvSetPosition -win $_nWave4 {("G2" 1)}
+wvSetPosition -win $_nWave4 {("G2" 2)}
+wvSetPosition -win $_nWave4 {("G2" 3)}
+wvSetPosition -win $_nWave4 {("G2" 4)}
+wvSetPosition -win $_nWave4 {("G3" 0)}
+wvSetPosition -win $_nWave4 {("G3" 1)}
+wvSetPosition -win $_nWave4 {("G3" 2)}
+wvSetPosition -win $_nWave4 {("G3" 3)}
+wvSetPosition -win $_nWave4 {("G3" 4)}
+wvSetPosition -win $_nWave4 {("G3" 5)}
+wvSetPosition -win $_nWave4 {("G3" 6)}
+wvSetPosition -win $_nWave4 {("G3" 7)}
+wvSetPosition -win $_nWave4 {("G3" 8)}
+wvSetPosition -win $_nWave4 {("G3" 10)}
+wvSetPosition -win $_nWave4 {("G3" 11)}
+wvSetPosition -win $_nWave4 {("G3" 12)}
+wvSetPosition -win $_nWave4 {("G3" 13)}
+wvSetPosition -win $_nWave4 {("G3" 14)}
+wvSetPosition -win $_nWave4 {("G3" 15)}
+wvSetPosition -win $_nWave4 {("G3" 16)}
+wvSetPosition -win $_nWave4 {("G4" 0)}
+wvMoveSelected -win $_nWave4
+wvSetPosition -win $_nWave4 {("G4" 6)}
+wvSetPosition -win $_nWave4 {("G4" 6)}
+wvScrollUp -win $_nWave4 1
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 3 )} 
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 3)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 4)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 6)}
+wvMoveSelected -win $_nWave4
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 6)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 5)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 3)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 2)}
+wvMoveSelected -win $_nWave4
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 2)}
+wvSetPosition -win $_nWave4 {("intf(pcie_intf)" 3)}
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 3 )} 
+wvSelectSignal -win $_nWave4 {( "G3" 1 )} 
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 2 )} 
+wvSelectSignal -win $_nWave4 {( "intf(pcie_intf)" 3 )} 
+wvSelectSignal -win $_nWave4 {( "G3" 16 )} 
+wvSelectSignal -win $_nWave4 {( "G2" 1 2 3 4 )} 
+wvSetCursor -win $_nWave4 1971.217990 -snap {("G2" 1)}
+wvSetCursor -win $_nWave4 1975.823640 -snap {("G4" 3)}
+wvSelectSignal -win $_nWave4 {( "G2" 2 )} 
+wvSelectSignal -win $_nWave4 {( "G2" 1 )} 
+debReload
+wvDisplayGridCount -win $_nWave4 -off
+wvGetSignalClose -win $_nWave4
+wvReloadFile -win $_nWave4
+wvScrollDown -win $_nWave4 1
+wvScrollDown -win $_nWave4 1
+wvScrollDown -win $_nWave4 0
+wvScrollDown -win $_nWave4 0
+wvScrollDown -win $_nWave4 0
+wvScrollUp -win $_nWave4 1
+wvScrollUp -win $_nWave4 1
+wvScrollDown -win $_nWave4 0
+wvScrollDown -win $_nWave4 0
+wvScrollDown -win $_nWave4 0
+wvScrollDown -win $_nWave4 1
+wvScrollDown -win $_nWave4 1
+wvScrollDown -win $_nWave4 0
+wvScrollDown -win $_nWave4 0
+wvScrollUp -win $_nWave4 1
+wvScrollUp -win $_nWave4 1
+wvScrollDown -win $_nWave4 0
+wvScrollDown -win $_nWave4 0
+wvScrollDown -win $_nWave4 0
+debExit

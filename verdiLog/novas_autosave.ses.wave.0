@@ -1,0 +1,90 @@
+Magic 271485
+Revision Verdi_U-2023.03-SP1
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 25 1920 847 197 65
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/novas.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 0.000000 3758.210000
+cursor 1984.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 0
+; marker line index
+markerPos 3
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "intf(pcie_intf)"
+activeDirFile "" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/novas.fsdb"
+addSignal -h 15 /tb_top/intf/clk
+addSignal -h 15 -holdScope rst_n
+addSignal -h 15 -holdScope rx_valid
+addSignal -h 15 -UNSIGNED -HEX -holdScope rx_header[127:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope rx_data[255:0]
+addSignal -h 15 -holdScope rx_sop
+addSignal -h 15 -holdScope rx_eop
+addGroup "G2"
+addSignal -h 15 /tb_top/intf/cpl_valid
+addSignal -h 15 -UNSIGNED -HEX -holdScope cpl_data[255:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cpl_requester_id[15:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope cpl_tag[9:0]
+addGroup "G3"
+addSignal -h 15 /tb_top/intf/app_req_valid
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_tlp_type[7:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_address[63:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_data[255:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_tag[9:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_requester_id[15:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_first_be[3:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_last_be[3:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_tc[2:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_attr[2:0]
+addSignal -h 15 -holdScope app_th
+addSignal -h 15 -holdScope app_td
+addSignal -h 15 -holdScope app_ep
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_at[1:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope app_length_dw[9:0]
+addSignal -h 15 -holdScope app_req_ready
+addGroup "G4"
+addSignal -h 15 /tb_top/intf/tx_ready
+addSignal -h 15 -holdScope tx_valid
+addSignal -h 15 -UNSIGNED -HEX -holdScope tx_header[127:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope tx_data[255:0]
+addSignal -h 15 -holdScope tx_sop
+addSignal -h 15 -holdScope tx_eop
+addGroup "G5"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+

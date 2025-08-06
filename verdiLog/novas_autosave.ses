@@ -1,0 +1,72 @@
+@verdi rc file Version 1.0
+[General]
+saveDB = TRUE
+relativePath = FALSE
+saveSingleView = FALSE
+saveNWaveWinId = 
+VerdiVersion = Verdi_U-2023.03-SP1
+[KeyNote]
+Line1 = Automatic Backup 0
+Line2 = Save Open Database Information: Yes
+Line3 = Path Option: Absolute Paths
+Line4 = Windows Option: All Windows
+[OneSearch]
+isExisted = TRUE
+[TestBench]
+ConstrViewShow = 0
+InherViewShow = 0
+FSDBMsgShow = 0
+AnnotationShow = 0
+Console = FALSE
+powerDumped = 0
+[fusa]
+fdb_server = 
+fdb_proj = 
+fdb_campaign = 
+fdb_tool = 
+[hb]
+postSimFile = /home/pcs/Documents/Aditya_data/pcie_uvm_tb/novas.fsdb
+syncTime = 62
+viewport = 0 27 1920 977 0 0 301 1918
+activeNode = "tb_top"
+activeScope = "tb_top"
+activeFile = "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/tb_top.sv"
+interactiveMode = False
+viewType = Source
+simulatorMode = False
+sourceBeginLine = 45
+baMode = False
+srcLineNum = True
+AutoWrap = True
+IdentifyFalseLogic = False
+syncSignal = False
+traceMode = Hierarchical
+showTraceInSchema = True
+paMode = False
+funcMode = False
+powerAwareAnnot = True
+safetyAwareAnnot = True
+amsAnnot = True
+DnDtraceCrossHierOnly = True
+leadingZero = False
+signalPane = True
+SourceVerticalScrollLines = 5
+Scope1 = "tb_top"
+multipleSelection = 1 45 2 0 0
+sdfCheckUndef = FALSE
+simFlow = FALSE
+[hb.design]
+importCmd = "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_agent.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_driver.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_env.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_intf.sv" "/home/pcs/Documen\
+ts/Aditya_data/pcie_uvm_tb/pcie_monitor.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_pkg.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_scoreboard.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_seq_lib.sv" "/home/pcs/Documents/Aditya\
+_data/pcie_uvm_tb/pcie_seqr.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_test_lib.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_tl_src.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/pcie_tx.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_t\
+b/tb_top.sv" "/home/pcs/Documents/Aditya_data/pcie_uvm_tb/uvm_commons.sv" "-2012" 
+workPath = /home/pcs/Documents/Aditya_data/pcie_uvm_tb
+invokeDir = /home/pcs/Documents/Aditya_data/pcie_uvm_tb
+[hb.sourceTab.1]
+scope = tb_top
+File = /home/pcs/Documents/Aditya_data/pcie_uvm_tb/tb_top.sv
+Line = 46
+[nMemoryManager]
+WaveformFile = /home/pcs/Documents/Aditya_data/pcie_uvm_tb/novas.fsdb
+UserActionNum = 0
+nMemWindowNum = 0

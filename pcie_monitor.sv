@@ -24,19 +24,23 @@ class pcie_monitor extends uvm_monitor;
 	endfunction
 
 	task run_phase(uvm_phase phase);
+		`uvm_info("MON","Run Phase",UVM_LOW)
 		forever begin
+			@(posedge vif.clk);
 			fork
 				app_layer_mon();
 				output_tx_mon();
-			join
+			join_any
 		end
 	endtask
 	task output_tx_mon();
 		//if(!$cast(tx1, base_tx)) begin
 		//	`uvm_error("CAST ERROR","pcie_dl_tx was not able to cast properly")
 		//end
+
+		`uvm_info("MON","TX MON-Running",UVM_HIGH)
 		$cast(tx1, btx);
-		@(posedge vif.tx_ready);
+		@(posedge vif.tx_valid);
 		tx1= new("cpl_layer");
 		tx1.tx_sop	= vif.tx_sop;
 		tx1.tx_header	= vif.tx_header;
@@ -48,10 +52,11 @@ class pcie_monitor extends uvm_monitor;
 	endtask
 
 task app_layer_mon();
+	`uvm_info("MON","APP MON-Running",UVM_HIGH)
 	if(!$cast(tx, btx)) begin
 		`uvm_error("CAST ERROR","pcie_app_tx was not able to cast properly")
 	end
-	@(posedge vif.rx_sop); //do reset handling here
+	@(posedge vif.rx_eop); //do reset handling here
 	tx = new("app_layer");
 	tx.app_req_valid 	= vif.app_req_valid;
 	tx.app_tlp_type 	= vif.app_tlp_type;
