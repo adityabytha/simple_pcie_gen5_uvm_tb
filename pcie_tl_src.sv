@@ -144,7 +144,7 @@ module pcie_gen5_transaction_layer #(
                 2'b00,              // Attr[1:0]
                 1'b0,               // TD
                 1'b0,               // EP
-                10'd1,              // Length (1 DW)
+                10'd1000,              // Length (8 DWs)
                 cpl_requester_id,
                 cpl_tag[9:8],
                 cpl_tag[7:0],
