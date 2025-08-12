@@ -13,25 +13,27 @@ module pcie_gen5_transaction_layer #(
     parameter ADDR_WIDTH = 64,
     parameter DATA_WIDTH = 256,
     parameter TLP_HEADER_WIDTH = 128
+    //parameter LINK_WIDTH = 8
 )(
     input logic clk,
     input logic rst_n,
 
-    // RX from DLL - decoded and sent to APP layer
+    // RX from DLL - received from RC assume 
     input logic rx_valid,
     input logic [TLP_HEADER_WIDTH-1:0] rx_header,
     input logic [DATA_WIDTH-1:0] rx_data,
     input logic rx_sop,
     input logic rx_eop,
 
-    // TX to DLL
+    // TX to DLL - sending cpl back to RC
     output logic tx_valid,
     output logic [TLP_HEADER_WIDTH-1:0] tx_header,
     output logic [DATA_WIDTH-1:0] tx_data,
     output logic tx_sop,
     output logic tx_eop,
-    input logic tx_ready,
+    input logic tx_ready
 
+    /*
     // Interface to Application Layer
     output logic app_req_valid,
     output logic [7:0] app_tlp_type, // Combined fmt + type
@@ -49,13 +51,16 @@ module pcie_gen5_transaction_layer #(
     output logic [1:0] app_at,
     output logic [9:0] app_length_dw,
     input  logic app_req_ready,
-
+    
     // Completion Input from outside forwarded to DLL
     input logic cpl_valid,
     input logic [DATA_WIDTH-1:0] cpl_data,
     input logic [15:0] cpl_requester_id,
     input logic [9:0] cpl_tag
+    */
 );
+
+    logic [DATA_WIDTH-1:0] tl_ep_mem [ADDR_WIDTH-1:0];
 
     typedef struct packed {
         logic [2:0] fmt;
@@ -98,6 +103,19 @@ module pcie_gen5_transaction_layer #(
         rx_tlp.address       = rx_header[63:0];
     end
 
+    always_ff @(posedge clk or negedge rst_n) begin
+	    if (!rst_n) begin
+		    for (int i = 0; i < 64; i++) begin
+			    tl_ep_mem[i] <=  '0;
+		    end
+	   end else if((rx_tlp.type1 == 5'b0_0000) && rx_valid && rx_sop) begin
+		   tl_ep_mem[rx_tlp.address] <= rx_data;
+		   //$display("Wriiten value %d at %h",tl_ep_mem[rx_tlp.address],rx_tlp.address);
+	   end //add code to handle reads as well later
+
+    end
+         
+/*
     // RX to Application Logic
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -160,6 +178,6 @@ module pcie_gen5_transaction_layer #(
             tx_eop   <= 0;
         end
     end
-
+*/
 endmodule
 

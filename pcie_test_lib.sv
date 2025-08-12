@@ -78,7 +78,6 @@ class pcie_both_test extends pcie_base_test;
 		phase.raise_objection(this);
 		seq = pcie_both_seq::type_id::create("seq");
 		phase.phase_done.set_drain_time(this,`PCIE_CLK_GEN5);
-		//seq1.start(env.agent.seqr);
 		seq.start(env.agent.seqr);
 		phase.drop_objection(this);
 	endtask

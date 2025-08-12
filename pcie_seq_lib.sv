@@ -82,10 +82,10 @@ class pcie_both_seq extends uvm_sequence#(base_tx);
 	`NEW_OBJ
 	int runs;
 	pcie_seq seq1;
-	pcie_2_seq seq2;
+	//pcie_2_seq seq2;
 	task body();
 			`uvm_do(seq1)
-			`uvm_do(seq2)
+			//`uvm_do(seq2)
 		`uvm_info("PCIE_BOTH_SEQ","SEQ BODY",UVM_LOW)
 	endtask	
 endclass

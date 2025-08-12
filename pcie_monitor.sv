@@ -27,10 +27,10 @@ class pcie_monitor extends uvm_monitor;
 		`uvm_info("MON","Run Phase",UVM_LOW)
 		forever begin
 			@(posedge vif.clk);
-			fork
-				app_layer_mon();
+			//fork
+			//	app_layer_mon();
 				output_tx_mon();
-			join_any
+			//join_any
 		end
 	endtask
 	task output_tx_mon();
@@ -50,7 +50,7 @@ class pcie_monitor extends uvm_monitor;
 		tx1.print();
 		ap_port.write(tx1);
 	endtask
-
+/*
 task app_layer_mon();
 	`uvm_info("MON","APP MON-Running",UVM_HIGH)
 	if(!$cast(tx, btx)) begin
@@ -77,5 +77,5 @@ task app_layer_mon();
 	
 	tx.print();
 	ap_port.write(tx);
-endtask
+endtask*/
 endclass
