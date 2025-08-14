@@ -78,6 +78,14 @@ class pcie_driver extends uvm_driver#(base_tx);
 			vif.rx_eop <= 1'b0;
 			//for cpl signal rest 
 		end else begin*/
+
+	       if (tx.fmt == 3'b000) begin
+		       @(posedge vif.clk);
+			vif.tx_ready  <= 1;
+		       @(posedge vif.clk);
+			vif.tx_ready  <= 0;
+		end
+
 		@(posedge vif.clk);
 		vif.rx_sop    <= 1;
 		//vif.app_req_ready <= 0;
@@ -87,8 +95,8 @@ class pcie_driver extends uvm_driver#(base_tx);
 					tx.tag[9:8], tx.tag[7:0], tx.last_be, tx.first_be, tx.address};
             	vif.rx_data   <= tx.data;
 		vif.rx_eop    <= 0;
-
             	@(posedge vif.clk);
+
             	vif.rx_sop    <= 0;
             	vif.rx_valid  <= 0;
 		vif.rx_eop    <= 1;

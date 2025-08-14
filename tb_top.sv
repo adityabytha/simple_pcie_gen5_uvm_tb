@@ -92,7 +92,7 @@ module tb_top;
 	initial begin
 		rst_n = 0;
 		#`PCIE_CLK_GEN5;
-		#`PCIE_CLK_GEN5;
+		//#`PCIE_CLK_GEN5;
 		rst_n = 1;
 	end
 
@@ -115,7 +115,7 @@ module tb_top;
 	end
 	
 	initial begin
-		$fsdbDumpfile();
-		$fsdbDumpvars(5,tb_top);
+		$fsdbDumpfile("wave1.fsdb");
+		$fsdbDumpvars(0,tb_top);
 	end
 endmodule

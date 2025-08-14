@@ -61,6 +61,7 @@ module pcie_gen5_transaction_layer #(
 );
 
     logic [DATA_WIDTH-1:0] tl_ep_mem [ADDR_WIDTH-1:0];
+    logic [DATA_WIDTH-1:0] read_data;
 
     typedef struct packed {
         logic [2:0] fmt;
@@ -108,13 +109,58 @@ module pcie_gen5_transaction_layer #(
 		    for (int i = 0; i < 64; i++) begin
 			    tl_ep_mem[i] <=  '0;
 		    end
-	   end else if((rx_tlp.type1 == 5'b0_0000) && rx_valid && rx_sop) begin
+	   end else if((rx_tlp.type1 == 5'b0_0000) && (rx_tlp.fmt == 3'b010) && rx_valid && rx_sop) begin
 		   tl_ep_mem[rx_tlp.address] <= rx_data;
 		   //$display("Wriiten value %d at %h",tl_ep_mem[rx_tlp.address],rx_tlp.address);
-	   end //add code to handle reads as well later
+	   end //else if((rx_tlp.type1 == 5'b0_0000) && (rx_tlp.fmt == 3'b000) && rx_valid && rx_sop) begin
+		//	tx_data <= tl_ep_mem[rx_tlp.address];
+	  // end
 
+   end
+	
+   //always_comb read_data = tl_ep_mem[rx_tlp.address];
+
+   always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            tx_valid <= 0;
+        end else if (tx_ready) begin
+            tx_valid    <= 1;
+            tx_sop      <= 1;
+            tx_eop      <= 1;
+
+            // Build header for Completion w/ Data
+            tx_header <= {
+                3'b010,             // fmt = 3DW with data
+                5'b01010,           // type = CplD
+                3'b000,             // TC
+                1'b0,               // LN
+                1'b0,               // TH
+                1'b0,               // Attr[2]
+                2'b00,              // AT
+                2'b00,              // Attr[1:0]
+                1'b0,               // TD
+                1'b0,               // EP
+                10'd1000,              // Length (8 DWs)
+                16'd0, 			//requester is 0 for now
+                rx_tlp.tag[9:8],
+                rx_tlp.tag[7:0],
+                4'hF,               // Last DW BE
+                4'hF,               // First DW BE
+                64'd0               // Address not used in Completion
+            };
+
+   	    tx_data <= tl_ep_mem[rx_tlp.address];
+            //tx_data <= cpl_data;
+        end else begin
+            tx_valid <= 0;
+            tx_sop   <= 0;
+            tx_eop   <= 0;
+        end
     end
-         
+    
+	    
+
+
 /*
     // RX to Application Logic
     always_ff @(posedge clk or negedge rst_n) begin
