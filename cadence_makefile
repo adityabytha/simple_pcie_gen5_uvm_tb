@@ -25,5 +25,5 @@ comprun:	comp run
 sim: comp run verdi
 
 clean:
-	rm -rf csrc simv* ucli.key vc_hdrs.h DVEfiles *.log *.vpd *.vcd verdiLog novas* *.vdb *.fsdb vfastLog verdi_config_file *Log* waves.shm xrun* xcelium.d
+	rm -rf csrc simv* ucli.key vc_hdrs.h DVEfiles *.log *.vpd *.vcd verdiLog novas* *.vdb *.fsdb vfastLog verdi_config_file *Log* waves.shm xrun* xcelium.d .simvision
 

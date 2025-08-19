@@ -19,3 +19,4 @@ verdi_config_file
 csrc/
 simv.daidir/
 verdiLog/
+.simivison/
