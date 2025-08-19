@@ -3,9 +3,9 @@
 //
 `timescale 1ns / 1ps
 
+`include "uvm_macros.svh"
 `include "uvm_pkg.sv"
 import uvm_pkg::*;
-`include "uvm_macros.svh"
 
 //define clock variables
 `define PCIE_CLK_GEN5_HALF 0.03125
@@ -91,8 +91,7 @@ module tb_top;
 
 	initial begin
 		rst_n = 0;
-		#`PCIE_CLK_GEN5;
-		//#`PCIE_CLK_GEN5;
+		#0.0620;
 		rst_n = 1;
 	end
 

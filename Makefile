@@ -7,7 +7,7 @@ FSDB_PATH=/home/pcs/synopsys/verdi/U-2023.03-SP1/share/PLI/VCS/LINUX64/
 test_name = pcie_both_test
 verbosity = UVM_NONE
 seed = 1
-runs = 1
+runs = 10
 
 #RTL= ../rtl/*
 work= work #library name

@@ -111,11 +111,7 @@ module pcie_gen5_transaction_layer #(
 		    end
 	   end else if((rx_tlp.type1 == 5'b0_0000) && (rx_tlp.fmt == 3'b010) && rx_valid && rx_sop) begin
 		   tl_ep_mem[rx_tlp.address] <= rx_data;
-		   //$display("Wriiten value %d at %h",tl_ep_mem[rx_tlp.address],rx_tlp.address);
-	   end //else if((rx_tlp.type1 == 5'b0_0000) && (rx_tlp.fmt == 3'b000) && rx_valid && rx_sop) begin
-		//	tx_data <= tl_ep_mem[rx_tlp.address];
-	  // end
-
+	   end 
    end
 	
    //always_comb read_data = tl_ep_mem[rx_tlp.address];
@@ -123,7 +119,7 @@ module pcie_gen5_transaction_layer #(
    always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             tx_valid <= 0;
-        end else if (tx_ready) begin
+        end else if (tx_ready && (rx_tlp.fmt == 3'b000)) begin
             tx_valid    <= 1;
             tx_sop      <= 1;
             tx_eop      <= 1;

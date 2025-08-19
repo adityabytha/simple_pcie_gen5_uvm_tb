@@ -52,9 +52,10 @@ class pcie_seq extends uvm_sequence#(pcie_tx);
 						//req.tag; randomized
 						req.first_be == 4'hf;		//aligned
 						req.last_be == 4'hf;		//aligned
-						req.address[63:32] == 32'b0;
-						req.address[31:0]  == 32'b0;	//addr is 32bit so uppers are hardcoded to 0s. 
-				    		//req.data; all data is random
+						req.address[63:32] == 32'b0;	//addr is 32bit so uppers are hardcoded to 0s. 
+						req.address[31:0] <= 32'h000000ff;	//address less than certain value temporarily
+						req.address[31:0] % 8 == 0;		//byte aligned
+						//req.data; all data is random
 		    		    })
 			#`PCIE_CLK_GEN5;
 			`uvm_do_with(req, { 	//Memory read TLPs
@@ -75,8 +76,9 @@ class pcie_seq extends uvm_sequence#(pcie_tx);
 						req.first_be == 4'hf;		//aligned
 						req.last_be == 4'hf;		//aligned
 						req.address[63:32] == 32'b0;	//addr is 32bit so uppers are hardcoded to 0s. 
-						req.address[31:0]  == 32'b0;	//addr is 32bit so uppers are hardcoded to 0s. 
-				    		//req.data; all data is random
+						req.address[31:0] <= 32'h000000ff;	//address less than certain value temporarily
+						req.address[31:0] % 8 == 0;		//byte aligned
+				    		req.data == 256'h0;		//no data to be given for MemRd
 		    		    })
 		end
 	endtask	

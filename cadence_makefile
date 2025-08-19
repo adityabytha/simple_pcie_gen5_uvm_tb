@@ -1,0 +1,29 @@
+
+test_name = pcie_both_test
+verbosity = UVM_NONE
+#verbosity = UVM_DEBUG
+#verbosity = UVM_LOW
+
+seed = 1
+runs = 10
+
+
+XRUN = xrun -64bit -sv -uvm -uvmhome CDNS-1.2-ML +UVM_TESTNAME=pcie_both_test -access +rwc -gui tb_top.sv
+
+
+comp:
+	$(XRUN)
+
+run:
+	$(SIMV)
+
+verdi:
+	$(VERDI)
+
+comprun:	comp run
+
+sim: comp run verdi
+
+clean:
+	rm -rf csrc simv* ucli.key vc_hdrs.h DVEfiles *.log *.vpd *.vcd verdiLog novas* *.vdb *.fsdb vfastLog verdi_config_file *Log* waves.shm xrun* xcelium.d
+

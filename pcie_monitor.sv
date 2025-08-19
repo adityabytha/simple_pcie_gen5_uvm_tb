@@ -6,9 +6,9 @@ class pcie_monitor extends uvm_monitor;
 	`uvm_component_utils(pcie_monitor)
 	`NEW_COMP
 
-	pcie_app_tx tx;
+	//pcie_app_tx tx;
 	pcie_dl_tx tx1;
-	//instantiate virtual interface
+	
 	virtual pcie_intf vif;
 	base_tx btx;
 	uvm_analysis_port#(base_tx) ap_port;
