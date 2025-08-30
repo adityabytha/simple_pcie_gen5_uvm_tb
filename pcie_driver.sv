@@ -60,6 +60,8 @@ class pcie_driver extends uvm_driver#(base_tx);
             	vif.rx_sop    <= 0;
             	vif.rx_valid  <= 0;
 		vif.rx_eop    <= 1;
+		@(posedge vif.clk);
+		vif.tx_ready  <= 0;
 	endtask
 endclass
 

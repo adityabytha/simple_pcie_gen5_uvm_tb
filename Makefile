@@ -52,7 +52,7 @@ cov : cov_$(SIMULATOR)
 sv_cmp_VCS:
 	vcs -l vcs.log -timescale=1ns/1ps -sverilog -ntb_opts uvm -debug_access+all -full64 -kdb -lca -P $(FSDB_PATH)/novas.tab $(FSDB_PATH)/pli.a +define+RUNS=$(runs) tb_top.sv 
 		      
-run_test_VCS:	sv_cmp_VCS
+run_test_VCS: clean	sv_cmp_VCS
 	./simv -a vcs.log +fsdbfile+wave1.fsdb +UVM_TESTNAME=$(test_name) +UVM_VERBOSITY=$(verbosity) +SEED=$(seed) +runs=$(runs)
 	#urg -dir mem_cov1.vdb -format both -report urgReport1
 	

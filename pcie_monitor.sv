@@ -6,7 +6,6 @@ class pcie_monitor extends uvm_monitor;
 	`uvm_component_utils(pcie_monitor)
 	`NEW_COMP
 
-	//pcie_app_tx tx;
 	pcie_dl_tx tx1;
 	
 	virtual pcie_intf vif;
@@ -41,7 +40,7 @@ class pcie_monitor extends uvm_monitor;
 		`uvm_info("MON","TX MON-Running",UVM_HIGH)
 		$cast(tx1, btx);
 		@(posedge vif.tx_valid);
-		tx1= new("cpl_layer");
+		tx1= new("TX_OUT");
 		tx1.tx_sop	= vif.tx_sop;
 		tx1.tx_header	= vif.tx_header;
 		tx1.tx_eop	= vif.tx_eop;

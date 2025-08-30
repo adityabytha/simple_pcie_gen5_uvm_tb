@@ -147,7 +147,32 @@ module pcie_gen5_transaction_layer #(
 
    	    tx_data <= tl_ep_mem[rx_tlp.address];
             //tx_data <= cpl_data;
-        end else begin
+    end else if (tx_ready && (rx_tlp.fmt == 3'b010)) begin
+	    tx_valid    <= 1;
+            tx_sop      <= 1;
+            tx_eop      <= 1;
+
+            // Build header for Completion 
+            tx_header <= {
+                3'b000,             // fmt = 3DW without data
+                5'b01010,           // type = Cpl
+                3'b000,             // TC
+                1'b0,               // LN
+                1'b0,               // TH
+                1'b0,               // Attr[2]
+                2'b00,              // AT
+                2'b00,              // Attr[1:0]
+                1'b0,               // TD
+                1'b0,               // EP
+                10'd0,              // Length (8 DWs)
+                16'd0, 			//requester is 0 for now
+                rx_tlp.tag[9:8],
+                rx_tlp.tag[7:0],
+                4'hF,               // Last DW BE
+                4'hF,               // First DW BE
+                64'd0               // Address not used in Completion
+            };
+    end else begin
             tx_valid <= 0;
             tx_sop   <= 0;
             tx_eop   <= 0;

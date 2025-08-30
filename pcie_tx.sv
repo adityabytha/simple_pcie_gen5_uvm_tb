@@ -34,18 +34,18 @@ class pcie_tx extends base_tx;
     `uvm_object_utils_begin(pcie_tx)
         `uvm_field_int(fmt, UVM_ALL_ON)
         `uvm_field_int(type1, UVM_ALL_ON)
-        `uvm_field_int(tc, UVM_ALL_ON)
-        `uvm_field_int(ln, UVM_ALL_ON)
-        `uvm_field_int(th, UVM_ALL_ON)
-        `uvm_field_int(attr, UVM_ALL_ON)
-        `uvm_field_int(at, UVM_ALL_ON)
-        `uvm_field_int(td, UVM_ALL_ON)
-        `uvm_field_int(ep, UVM_ALL_ON)
-        `uvm_field_int(length, UVM_ALL_ON)
+        `uvm_field_int(tc, UVM_NOPRINT)
+        `uvm_field_int(ln, UVM_NOPRINT)
+        `uvm_field_int(th, UVM_NOPRINT)
+        `uvm_field_int(attr, UVM_NOPRINT)
+        `uvm_field_int(at, UVM_NOPRINT)
+        `uvm_field_int(td, UVM_NOPRINT)
+        `uvm_field_int(ep, UVM_NOPRINT)
+        `uvm_field_int(length, UVM_NOPRINT)
         `uvm_field_int(requester_id, UVM_ALL_ON)
         `uvm_field_int(tag, UVM_ALL_ON)
-        `uvm_field_int(first_be, UVM_ALL_ON)
-        `uvm_field_int(last_be, UVM_ALL_ON)
+        `uvm_field_int(first_be, UVM_NOPRINT)
+        `uvm_field_int(last_be, UVM_NOPRINT)
         `uvm_field_int(address, UVM_ALL_ON)
         `uvm_field_int(data, UVM_ALL_ON)
     `uvm_object_utils_end
@@ -57,7 +57,7 @@ class pcie_dl_tx extends base_tx;
 	// TX to DL
     bit tx_valid;
     bit [TLP_HEADER_WIDTH-1:0] tx_header;
-    bit  [DATA_WIDTH-1:0] tx_data;
+    bit [DATA_WIDTH-1:0] tx_data;
     bit tx_sop;
     bit tx_eop;
     bit tx_ready;

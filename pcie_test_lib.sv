@@ -28,12 +28,12 @@ class pcie_main_test extends pcie_base_test;
 	endfunction
 
 	task run_phase(uvm_phase phase);
-		pcie_seq seq;
+		//pcie_seq seq;
 		phase.raise_objection(this);
 		//`uvm_info("TEST_LIB","Run_Phase - PCIE_MAIN_TEST",UVM_NONE)
-		seq = pcie_seq::type_id::create("seq");
+		//seq = pcie_seq::type_id::create("seq");
 		phase.phase_done.set_drain_time(this,`PCIE_CLK_GEN5);
-		seq.start(env.agent.seqr);
+		//seq.start(env.agent.seqr);
 		phase.drop_objection(this);	
 	endtask
 	
@@ -74,9 +74,9 @@ class pcie_both_test extends pcie_base_test;
 	endfunction
 
 	task run_phase(uvm_phase phase);
-		pcie_both_seq seq;
+		mem_wr_rd_seq seq;
 		phase.raise_objection(this);
-		seq = pcie_both_seq::type_id::create("seq");
+		seq = mem_wr_rd_seq::type_id::create("seq");
 		phase.phase_done.set_drain_time(this,`PCIE_CLK_GEN5);
 		seq.start(env.agent.seqr);
 		phase.drop_objection(this);
